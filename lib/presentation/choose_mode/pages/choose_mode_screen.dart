@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spotify/main.dart';
+import 'package:spotify/presentation/auth/pages/signup_or_signin.dart';
 import 'package:spotify/presentation/choose_mode/bloc/theme_cubit.dart';
 
 import '../../../common/widgets/buttons/basic_app_button.dart';
@@ -93,24 +93,30 @@ class ChooseModeScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      width: 30,
+                      width: 70,
                     ),
                     Column(
                       children: [
-                        ClipOval(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                            child: Container(
-                                height: 70,
-                                width: 70,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(0xff30393C)),
-                                child: const Icon(
-                                  CupertinoIcons.brightness,
-                                  color: Colors.white,
-                                  size: 30,
-                                )),
+                        GestureDetector(
+                          onTap: (){
+                            context.read<ThemeCubit>().updateTheme(ThemeMode.light);
+
+                          },
+                          child: ClipOval(
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                              child: Container(
+                                  height: 70,
+                                  width: 70,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xff30393C)),
+                                  child: const Icon(
+                                    CupertinoIcons.brightness,
+                                    color: Colors.white,
+                                    size: 30,
+                                  )),
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -137,7 +143,7 @@ class ChooseModeScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  const ChooseModeScreen()));
+                                  const SignupOrSignin()));
                     })
               ],
             ),
@@ -145,6 +151,5 @@ class ChooseModeScreen extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }
