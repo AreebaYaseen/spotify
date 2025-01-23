@@ -92,7 +92,7 @@ Widget _signupText(BuildContext context) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => const SignUp()));
+                      builder: (BuildContext context) =>  SignUp()));
             },
             child: const Text('Register Now'))
       ],

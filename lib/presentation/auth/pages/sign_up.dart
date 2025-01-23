@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:spotify/common/widgets/buttons/back_bar.dart';
 import 'package:spotify/common/widgets/buttons/basic_app_button.dart';
 import 'package:spotify/core/configs/assets/app_images.dart';
+import 'package:spotify/data/models/auth/create_user_req.dart';
+import 'package:spotify/domain/usecases/auth/signup.dart';
 import 'package:spotify/presentation/auth/pages/sign_in.dart';
 
+import '../../../service_locator.dart';
+
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  SignUp({super.key});
+
+  final TextEditingController _fullName = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,65 +49,90 @@ class SignUp extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            BasicAppButton(title: 'Register', onPressed: () {})
+            BasicAppButton(
+                title: 'Create Account',
+                onPressed: () async {
+                  var result = await sl<SignupUseCase>().call(
+                      params: CreateUserReq(
+                          fullName: _fullName.text.toString(),
+                          email: _email.text.toString(),
+                          password: _password.text.toString()));
+                  result.fold(
+                          (l) {
+                            var snackbar = SnackBar(content: Text(l));
+                            ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                          },
+                          (r) {}
+                  );
+                })
           ],
         ),
       ),
     );
   }
-}
 
-Widget _registerText() {
-  return const Text(
-    'Register',
-    style: TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 25,
-    ),
-    textAlign: TextAlign.center,
-  );
-}
 
-Widget _fullNameField(BuildContext context) {
-  return TextField(
-    decoration: const InputDecoration(hintText: "Full Name")
-        .applyDefaults(Theme.of(context).inputDecorationTheme),
-  );
-}
+  Widget _registerText() {
+    return const Text(
+      'Register',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 25,
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
 
-Widget _emailField(BuildContext context) {
-  return TextField(
-    decoration: const InputDecoration(hintText: "Enter Email")
-        .applyDefaults(Theme.of(context).inputDecorationTheme),
-  );
-}
+  Widget _fullNameField(BuildContext context) {
+    return TextField(
+      decoration: const InputDecoration(hintText: "Full Name")
+          .applyDefaults(Theme
+          .of(context)
+          .inputDecorationTheme),
+      controller: _fullName,
+    );
+  }
 
-Widget _passwordField(BuildContext context) {
-  return TextField(
-    decoration: const InputDecoration(hintText: "Enter Password")
-        .applyDefaults(Theme.of(context).inputDecorationTheme),
-  );
-}
+  Widget _emailField(BuildContext context) {
+    return TextField(
+      controller: _email,
+      decoration: const InputDecoration(hintText: "Enter Email")
+          .applyDefaults(Theme
+          .of(context)
+          .inputDecorationTheme),
+    );
+  }
 
-Widget _signinText(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 30),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Do you have an account?',
-          style: TextStyle(fontWeight: FontWeight.w500),
-        ),
-        TextButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const SignIn()));
-            },
-            child: const Text('Sign in'))
-      ],
-    ),
-  );
+  Widget _passwordField(BuildContext context) {
+    return TextField(
+      controller: _password,
+      decoration: const InputDecoration(hintText: "Enter Password")
+          .applyDefaults(Theme
+          .of(context)
+          .inputDecorationTheme),
+    );
+  }
+
+  Widget _signinText(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Do you have an account?',
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const SignIn()));
+              },
+              child: const Text('Sign in'))
+        ],
+      ),
+    );
+  }
 }
