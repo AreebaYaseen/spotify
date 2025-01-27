@@ -3,7 +3,10 @@ import 'package:spotify/common/helpers/is_dark.dart';
 
 class BackBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
-  const BackBar({super.key, this.title});
+  final bool hideBackButton;
+  const BackBar({super.key,
+    this.hideBackButton=false,
+    this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class BackBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       title: title?? const Text(''),
       centerTitle: true,
-      leading: IconButton(onPressed: (){
+      leading:hideBackButton? null: IconButton(onPressed: (){
         Navigator.pop(context);
       }, icon: Container(
         height: 50,
