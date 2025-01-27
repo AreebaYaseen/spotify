@@ -5,8 +5,8 @@ import 'package:spotify/core/configs/assets/app_images.dart';
 import 'package:spotify/data/models/auth/create_user_req.dart';
 import 'package:spotify/domain/usecases/auth/signup.dart';
 import 'package:spotify/presentation/auth/pages/sign_in.dart';
-
 import '../../../service_locator.dart';
+import '../../root/pages/root.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
@@ -28,8 +28,9 @@ class SignUp extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: _signinText(context),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -57,20 +58,22 @@ class SignUp extends StatelessWidget {
                           fullName: _fullName.text.toString(),
                           email: _email.text.toString(),
                           password: _password.text.toString()));
-                  result.fold(
-                          (l) {
-                            var snackbar = SnackBar(content: Text(l));
-                            ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                          },
-                          (r) {}
-                  );
+                  result.fold((l) {
+                    var snackbar = SnackBar(content: Text(l), behavior: SnackBarBehavior.floating,);
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                  }, (r) {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => Root()),
+                        (route) => false);
+                  });
                 })
           ],
         ),
       ),
     );
   }
-
 
   Widget _registerText() {
     return const Text(
@@ -86,9 +89,7 @@ class SignUp extends StatelessWidget {
   Widget _fullNameField(BuildContext context) {
     return TextField(
       decoration: const InputDecoration(hintText: "Full Name")
-          .applyDefaults(Theme
-          .of(context)
-          .inputDecorationTheme),
+          .applyDefaults(Theme.of(context).inputDecorationTheme),
       controller: _fullName,
     );
   }
@@ -97,9 +98,7 @@ class SignUp extends StatelessWidget {
     return TextField(
       controller: _email,
       decoration: const InputDecoration(hintText: "Enter Email")
-          .applyDefaults(Theme
-          .of(context)
-          .inputDecorationTheme),
+          .applyDefaults(Theme.of(context).inputDecorationTheme),
     );
   }
 
@@ -107,9 +106,7 @@ class SignUp extends StatelessWidget {
     return TextField(
       controller: _password,
       decoration: const InputDecoration(hintText: "Enter Password")
-          .applyDefaults(Theme
-          .of(context)
-          .inputDecorationTheme),
+          .applyDefaults(Theme.of(context).inputDecorationTheme),
     );
   }
 
@@ -128,7 +125,7 @@ class SignUp extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => const SignIn()));
+                        builder: (BuildContext context) =>  SignIn()));
               },
               child: const Text('Sign in'))
         ],

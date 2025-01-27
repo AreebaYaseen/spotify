@@ -44,39 +44,45 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDwphkicjrPMUSYXBdW-wBGoqderFJpH0A',
-    appId: '1:269831612373:web:97b7242ab21a8d8589ff5c',
-    messagingSenderId: '269831612373',
-    projectId: 'spotify0101-9dde3',
-    authDomain: 'spotify0101-9dde3.firebaseapp.com',
-    storageBucket: 'spotify0101-9dde3.firebasestorage.app',
-    measurementId: 'G-CF9DNBVKRS',
+    apiKey: 'AIzaSyBU9Q_DeMKJKsKRKjBD5EehZZy222JFkXs',
+    appId: '1:247765216945:web:e969751ceba172bc10bc90',
+    messagingSenderId: '247765216945',
+    projectId: 'flutterfirebase-7c449',
+    authDomain: 'flutterfirebase-7c449.firebaseapp.com',
+    databaseURL: 'https://flutterfirebase-7c449-default-rtdb.firebaseio.com',
+    storageBucket: 'flutterfirebase-7c449.appspot.com',
+    measurementId: 'G-BW342T6XRK',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAQelcHSZPzQv9N1iOuPhDCdsgM4O49tV0',
-    appId: '1:269831612373:android:c649001634db48dd89ff5c',
-    messagingSenderId: '269831612373',
-    projectId: 'spotify0101-9dde3',
-    storageBucket: 'spotify0101-9dde3.firebasestorage.app',
+    apiKey: 'AIzaSyA6MckJ62ApIDp8ttVcopgiGrhUYFWpI-Q',
+    appId: '1:247765216945:android:543b450486bfa15b10bc90',
+    messagingSenderId: '247765216945',
+    projectId: 'flutterfirebase-7c449',
+    databaseURL: 'https://flutterfirebase-7c449-default-rtdb.firebaseio.com',
+    storageBucket: 'flutterfirebase-7c449.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBGY36_JpaLWEdJpCjBMmJ2uaNM2zdoM1o',
-    appId: '1:269831612373:ios:ef5c7819ec1b446c89ff5c',
-    messagingSenderId: '269831612373',
-    projectId: 'spotify0101-9dde3',
-    storageBucket: 'spotify0101-9dde3.firebasestorage.app',
+    apiKey: 'AIzaSyCJ0JttgpRW90gbZTAaOb2w0MObaOzskf4',
+    appId: '1:247765216945:ios:66ea34ae3d641c7510bc90',
+    messagingSenderId: '247765216945',
+    projectId: 'flutterfirebase-7c449',
+    databaseURL: 'https://flutterfirebase-7c449-default-rtdb.firebaseio.com',
+    storageBucket: 'flutterfirebase-7c449.appspot.com',
+    androidClientId: '247765216945-6a3nk28c9emtrl33shj5jiu3unav53s4.apps.googleusercontent.com',
     iosBundleId: 'com.example.spotify',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDwphkicjrPMUSYXBdW-wBGoqderFJpH0A',
-    appId: '1:269831612373:web:658fd38e4745015d89ff5c',
-    messagingSenderId: '269831612373',
-    projectId: 'spotify0101-9dde3',
-    authDomain: 'spotify0101-9dde3.firebaseapp.com',
-    storageBucket: 'spotify0101-9dde3.firebasestorage.app',
-    measurementId: 'G-Q88LVJQZ62',
+    apiKey: 'AIzaSyBU9Q_DeMKJKsKRKjBD5EehZZy222JFkXs',
+    appId: '1:247765216945:web:a525564d97432f0b10bc90',
+    messagingSenderId: '247765216945',
+    projectId: 'flutterfirebase-7c449',
+    authDomain: 'flutterfirebase-7c449.firebaseapp.com',
+    databaseURL: 'https://flutterfirebase-7c449-default-rtdb.firebaseio.com',
+    storageBucket: 'flutterfirebase-7c449.appspot.com',
+    measurementId: 'G-YG2SCKS2B4',
   );
+
 }
